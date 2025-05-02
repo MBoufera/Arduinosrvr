@@ -2,9 +2,9 @@ const axios = require('axios');
 
 const FIREBASE_URL = 'https://corrosionmonitor-a7505-default-rtdb.europe-west1.firebasedatabase.app/devices/arduino-001/readings.json';
 
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
   if (req.method !== 'POST') {
-    return res.status(405).send('Method Not Allowed');
+    return res.status(405).send('Method not allowed');
   }
 
   const gasValue = req.body.value;
@@ -27,4 +27,4 @@ export default async function handler(req, res) {
     console.error('Failed to send to Firebase:', error.message);
     res.status(500).send('Failed to send to Firebase');
   }
-}
+};
